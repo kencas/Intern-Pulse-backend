@@ -13,7 +13,7 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
     throw new Error("Method not implemented.");
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.repository.delete(id)
   }
 
@@ -23,6 +23,10 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
 
   async findOne(data: T): Promise<T> {
     return await this.repository.findOne(<T>{ where: data })
+  }
+
+  async findById(id: number | string): Promise<T> {
+    return await this.repository.findOne(<T>{ where: { id } })
   }
     
 }
