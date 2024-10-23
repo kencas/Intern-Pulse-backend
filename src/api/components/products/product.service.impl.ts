@@ -79,7 +79,7 @@ export class ProductManagementService implements IProductManagementService{
         product.discount = data.discount;
         product.image = data.image;
 
-        product = await this.productRepository.save(data);
+        product = await this.productRepository.save(product);
 
         return product;
     }
