@@ -85,8 +85,12 @@ config();
   })
 
   const productController = Container.get(ProductController);
+    app.get('/products/:id', (req, res, next) => productController.getProductById(req, res, next));
+    app.put('/products/:id', (req, res, next) => productController.updateProduct(req, res, next));
+    app.delete('/products/:id', (req, res, next) => productController.deleteProduct(req, res, next));
     app.get('/products/:code', (req, res, next) => productController.getProductByCode(req, res, next));
     app.post('/products', (req, res, next) => productController.createProduct(req, res, next));
+    app.get('/products', (req, res, next) => productController.getProductListing(req, res, next));
 
     app.use(express.json({ limit: '50mb' }));
     app.use(express.urlencoded({ limit: '50mb' }))
