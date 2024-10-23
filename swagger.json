@@ -1,0 +1,717 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Freexit Onboarding",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "onboarding.freexitnow.com",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "CreateProduct",
+        "description": "API for Products in the system"
+      }
+      
+    ],
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/products": {
+        "post": {
+          "summary": "Create New Product",
+          "tags": [
+            "CreateProduct"
+          ],
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/CreateProductDto"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product Information is created",
+              "schema": {
+                "$ref": "#/definitions/ProductDto"
+              }
+            }
+          }
+        }
+      },
+      "/users/verifyPhonenumber": {
+        "post": {
+          "tags": [
+            "CreateAccount"
+          ],
+          "description": "Create Verify OTP in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "OTP that we want to verify",
+              "schema": {
+                "$ref": "#/definitions/VerifyPhonenumberDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OTP is verified",
+              "schema": {
+                "$ref": "#/definitions/VerifyPhonenumberResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users": {
+        "get": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "Get all users in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/UsersResponse"
+                }
+              }
+            }
+          }
+      },
+      
+      "/users/login": {
+        "post": {
+          "tags": [
+            "Login"
+          ],
+          "description": "Authenticate user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to authenticate",
+              "schema": {
+                "$ref": "#/definitions/LoginDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User is authenticated",
+              "schema": {
+                "$ref": "#/definitions/LoginResponse"
+              }
+            },
+            "400": {
+              "description": "Authentication Error",
+              "schema": {
+                "$ref": "#/definitions/BaseBadResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users/verifyAccount": {
+        "post": {
+          "tags": [
+            "VerifyPhonenumberExists"
+          ],
+          "description": "Verify if Phone Number exists in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Phone Number that we want to verify",
+              "schema": {
+                "$ref": "#/definitions/VerifyAccountDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OTP is verified",
+              "schema": {
+                "$ref": "#/definitions/VerifyAccountResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/otp/verify": {
+        "post": {
+          "tags": [
+            "VerifyOtp"
+          ],
+          "description": "Verify OTP",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Phone Number that we want to verify",
+              "schema": {
+                "$ref": "#/definitions/VerifyOtpDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OTP is verified",
+              "schema": {
+                "$ref": "#/definitions/VerifyOtpResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users/forgotPassword": {
+        "post": {
+          "tags": [
+            "ForgotPassword"
+          ],
+          "description": "Initiate Password reset in the system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Password reset",
+              "schema": {
+                "$ref": "#/definitions/ForgotPasswordDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Password reset initiated successfully",
+              "schema": {
+                "$ref": "#/definitions/ForgotPasswordResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users/changePassword": {
+        "post": {
+          "tags": [
+            "ChangePassword"
+          ],
+          "description": "Change new Password in the system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Change Password",
+              "schema": {
+                "$ref": "#/definitions/ChangePasswordDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Password changed successfully",
+              "schema": {
+                "$ref": "#/definitions/ChangePasswordResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users/changePin": {
+        "post": {
+          "tags": [
+            "ChangePin"
+          ],
+          "description": "Change new Password in the system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Change Password",
+              "schema": {
+                "$ref": "#/definitions/ChangePinDto"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Password changed successfully",
+              "schema": {
+                "$ref": "#/definitions/ChangePinResponse"
+              }
+            }
+          }
+        } 
+      },
+      "/users/{userId}": {
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "ID of User that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "summary": "Get all User details with User ID",
+          "tags": [
+            "Users"
+          ],
+          "responses": {
+            "200": {
+              "description": "User details Listed",
+              "schema": {
+                "$ref": "#/definitions/UserResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "SignupDto": {
+        "required": [
+          "phonenumber",
+          "countryCode"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          }
+        }
+      },
+      "SignupResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/UserDto"
+          }
+        }
+      },
+      "VerifyPhonenumberDto": {
+        "required": [
+          "phonenumber",
+          "code"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyPhonenumberResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/TokenDto"
+          }
+        }
+      },
+      "VerifyAccountDto": {
+        "required": [
+          "phonenumber"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyOtpDto": {
+        "required": [
+          "phonenumber",
+          "code"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyOtpResponse": {
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyAccountResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/TokenDto"
+          }
+        }
+      },
+      "ForgotPasswordDto": {
+        "required": [
+          "phonenumber"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "ForgotPasswordResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ChangePasswordDto": {
+        "required": [
+          "phonenumber",
+          "new_password"
+        ],
+        "properties":{
+          "phonenumber": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        }
+      },
+      "ChangePinDto": {
+        "required": [
+          "phonenumber",
+          "new_pin"
+        ],
+        "properties":{
+          "phonenumber": {
+            "type": "string"
+          },
+          "new_pin": {
+            "type": "string"
+          }
+        }
+      },
+      "ChangePwdDto": {
+        "required": [
+          "verifyOtp",
+          "verifyPayload"
+        ],
+        "properties": {
+          "verifyOtp": {
+            "type": "object",
+            "properties":{
+              "phonenumber": {
+                "type": "string"
+              },
+              "code": {
+                "type": "string"
+              }
+            }
+          },
+          "verifyPayload": {
+            "type": "object",
+            "properties":{
+              "phonenumber": {
+                "type": "string"
+              },
+              "new_password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ChangePasswordResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ChangePinResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CreateAccountDto": {
+        "required": [
+          "pin",
+          "phonenumber",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string"
+          },
+          "phonenumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateAccountResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/UserDto"
+          }
+        }
+      },
+      "UserDto": {
+        "required": [
+          "userId",
+          "username",
+          "firstname",
+          "lastname",
+          "email",
+          "phonenumber",
+          "countryCode",
+          "address",
+          "isPhoneVerified",
+          "isAccountUpdated"
+        ],
+        "properties": {
+          "userId": {
+            "type": "boolean"
+          },
+          "username": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phonenumber": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "isPhoneVerified": {
+            "type": "boolean"
+          },
+          "isAccountUpdated": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TokenDto": {
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResponseDto": {
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "user": {
+            "type": "object",
+            "$ref": "#/definitions/UserDto"
+          }
+        }
+      },
+      "UsersResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        }
+        
+      },
+      "UserResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/UserDto"
+          }
+        }
+        
+      },
+      "LoginDto": {
+        "required": [
+          "phonenumber",
+          "pin"
+        ],
+        "properties": {
+          "phonenumber": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/LoginResponseDto"
+          }
+        }
+      },
+      "BaseBadResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "default": false
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      },
+      "BaseBooleanResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "default": false
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,148 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Freexit Onboarding",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "http://localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "CreateProduct",
+        "description": "API for Products in the system"
+      }
+      
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/products": {
+        "post": {
+          "summary": "Create New Product",
+          "tags": [
+            "CreateProduct"
+          ],
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/CreateProductDto"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product Information is created",
+              "schema": {
+                "$ref": "#/definitions/ProductDto"
+              }
+            }
+          }
+        }
+      },
+      "/products/{code}": {
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "Code of Product that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "summary": "Get all Product details with Product Code",
+          "tags": [
+            "Product"
+          ],
+          "responses": {
+            "200": {
+              "description": "User details Listed",
+              "schema": {
+                "$ref": "#/definitions/ProductResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "ProductDto": {
+        "required": [
+          "code",
+          "name",
+          "description",
+          "amount",
+          "discount",
+          "vendor",
+          "image"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "discount": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "$ref": "#/definitions/ProductDto"
+          }
+        }
+      },
+      
+      "BaseBooleanResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "default": false
+          },
+          "message": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
