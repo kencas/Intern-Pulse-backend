@@ -11,7 +11,7 @@ export const fail = (res, status, msg = "") => res
     .json({
         success: false,
         message: msg || "Failed",
-        payload: [] || undefined,
+        payload: null,
     });
 
 export const response = (res, status, entity, msg) => res

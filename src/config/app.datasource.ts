@@ -7,10 +7,16 @@ export const AppDataSource = new DataSource({
     host: env.DB_HOST,
     port: parseInt(env.DB_PORT),
     username: env.DB_USERNAME,
-    password: 'kencas@45',
+    password: env.DB_PASSWORD,
     database: env.DB_NAME,
     synchronize: true,
-    logging: false,
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      }
+    },
+    logging: true,
     entities: [Product],
     subscribers: [],
     cache: true,
