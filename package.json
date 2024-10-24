@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "dev": "ts-node-dev --respawn src/index.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "test": "jest"
@@ -42,7 +44,14 @@
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.9",
     "jest": "^29.7.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node-dev": "^1.1.6"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+]
 }
