@@ -8,10 +8,14 @@
      "target": "es5",
      "module": "commonjs",
      "moduleResolution": "node",
-     "outDir": "./dist",
+     "outDir": "dist",
+      "baseUrl": ".",
+      "paths": {
+          "*": ["node_modules/*", "src/types/*"]
+      },
      "emitDecoratorMetadata": true,
      "experimentalDecorators": true,
      "sourceMap": true
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "app.ts", "index.ts", "routes.ts", "server.ts"]
+  "include": ["./src/**/*"]
 }
